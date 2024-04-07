@@ -13,14 +13,17 @@
     "@supabase/supabase-js": "^2.42.0",
     "@tabler/icons-react": "^3.1.0",
     "apexcharts": "^3.48.0",
+    "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.24",
+    "lucide-react": "^0.365.0",
     "next": "14.1.4",
     "react": "^18",
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18",
     "react-element-to-jsx-string": "^15.0.0",
-    "tailwind-merge": "^2.2.2"
+    "tailwind-merge": "^2.2.2",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "^20",
