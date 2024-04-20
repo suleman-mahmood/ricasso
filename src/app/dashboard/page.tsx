@@ -12,6 +12,17 @@ import {
   AlertDescription,
   AlertTitle,
 } from "@/components/ui/alert"
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
@@ -26,6 +37,7 @@ import {
 } from "@/components/ui/select"
 import { supabase } from "@/utils/initialize_supabase";
 import { cn } from "@/utils/cn";
+import Link from "next/link";
 
 export default function SignupFormDemo() {
   const [data, setData] = useState<Array<{ x: Date, y: Array<number> }>>([]);
@@ -35,6 +47,65 @@ export default function SignupFormDemo() {
 
   const [errorMessage, setErrorMessage] = useState('');
   const [createOrderLoading, setCreateOrderpLoading] = useState(false);
+
+  const invoices = [
+  {
+    orderTime: "09:03 12th Oct 2024",
+    symbol: "USD",
+    type: "Buy",
+    initialPrice: "100.00",
+    unrealizedProfitLoss: "50.00",
+    amount: "10",
+  },
+  {
+    orderTime: "09:03 12th Oct 2024",
+    symbol: "USD",
+    type: "Buy",
+    initialPrice: "100.00",
+    unrealizedProfitLoss: "50.00",
+    amount: "10",
+  },
+  {
+    orderTime: "09:03 12th Oct 2024",
+    symbol: "USD",
+    type: "Buy",
+    initialPrice: "100.00",
+    unrealizedProfitLoss: "50.00",
+    amount: "10",
+  },
+  {
+    orderTime: "09:03 12th Oct 2024",
+    symbol: "USD",
+    type: "Buy",
+    initialPrice: "100.00",
+    unrealizedProfitLoss: "50.00",
+    amount: "10",
+  },
+  {
+    orderTime: "09:03 12th Oct 2024",
+    symbol: "USD",
+    type: "Buy",
+    initialPrice: "100.00",
+    unrealizedProfitLoss: "50.00",
+    amount: "10",
+  },
+  {
+    orderTime: "09:03 12th Oct 2024",
+    symbol: "USD",
+    type: "Buy",
+    initialPrice: "100.00",
+    unrealizedProfitLoss: "50.00",
+    amount: "10",
+  },
+  {
+    orderTime: "09:03 12th Oct 2024",
+    symbol: "USD",
+    type: "Buy",
+    initialPrice: "100.00",
+    unrealizedProfitLoss: "50.00",
+    amount: "10",
+  },
+]
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -100,6 +171,14 @@ export default function SignupFormDemo() {
 
   return (
     <div className="w-full flex flex-col items-center mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input dark:bg-black">
+      <button className="inline-flex h-12 items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#4d0000,55%,#4d0000)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+        <Link href="/leaderboard">
+          Leaderboards &rarr;
+        </Link>
+      </button>
+
+      <div className="h-8"></div>
+
       <Select defaultValue={selectedSymbol} onValueChange={e => setSelectedSymbol(e)}>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Select symbol" />
@@ -158,6 +237,71 @@ export default function SignupFormDemo() {
         </Alert>}
 
       </form>
+
+      <Tabs defaultValue="open-orders">
+        <TabsList>
+          <TabsTrigger value="open-orders">Open Orders</TabsTrigger>
+          <TabsTrigger value="orders-history">Orders History</TabsTrigger>
+        </TabsList>
+        <TabsContent value="open-orders">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-[100px]">Order Time</TableHead>
+                <TableHead>Symbol</TableHead>
+                <TableHead>Type</TableHead>
+                <TableHead>Initial Price</TableHead>
+                <TableHead>Unrealized Profit / Loss</TableHead>
+                <TableHead className="text-right">Amount</TableHead>
+                <TableHead>Action</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {invoices.slice(0,3).map((invoice) => (
+                <TableRow key={invoice.orderTime}>
+                  <TableCell className="font-medium">{invoice.orderTime}</TableCell>
+                  <TableCell>{invoice.symbol}</TableCell>
+                  <TableCell>{invoice.type}</TableCell>
+                  <TableCell>{invoice.initialPrice}</TableCell>
+                  <TableCell>{invoice.unrealizedProfitLoss}</TableCell>
+                  <TableCell className="text-right">{invoice.amount}</TableCell>
+                  <TableCell className="text-right">
+                    <button className="inline-flex h-12 items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#4d0000,55%,#4d0000)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+                      Close order
+                    </button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TabsContent>
+        <TabsContent value="orders-history">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-[100px]">Order Time</TableHead>
+                <TableHead>Symbol</TableHead>
+                <TableHead>Type</TableHead>
+                <TableHead>Initial Price</TableHead>
+                <TableHead>Unrealized Profit / Loss</TableHead>
+                <TableHead className="text-right">Amount</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {invoices.slice(3-7).map((invoice) => (
+                <TableRow key={invoice.orderTime}>
+                  <TableCell className="font-medium">{invoice.orderTime}</TableCell>
+                  <TableCell>{invoice.symbol}</TableCell>
+                  <TableCell>{invoice.type}</TableCell>
+                  <TableCell>{invoice.initialPrice}</TableCell>
+                  <TableCell>{invoice.unrealizedProfitLoss}</TableCell>
+                  <TableCell className="text-right">{invoice.amount}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }
