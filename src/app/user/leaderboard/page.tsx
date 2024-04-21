@@ -41,6 +41,13 @@ export default function SignupFormDemo() {
 
   return (
     <div className="w-full md:w-3/5 flex flex-col items-center mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input dark:bg-black">
+      <div className="stats">
+        <div className="stat">
+          <div className="stat-title">Your rank</div>
+          <div className="stat-value">2nd</div>
+        </div>
+      </div>
+
       <Table>
         <TableHeader>
           <TableRow>

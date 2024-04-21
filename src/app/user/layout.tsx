@@ -12,7 +12,7 @@ export default function RootLayout({
           <Link className="btn btn-ghost text-xl" href={"/user/dashboard"}>Moqa</Link>
         </div>
         <div className="flex-none">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 flex flex-row items-center">
             <li>
               <Link href={"/user/trade"}>Trade</Link>
             </li>
@@ -21,6 +21,11 @@ export default function RootLayout({
             </li>
             <li>
               <Link href={"/user/leaderboard"}>Leaderboards</Link>
+            </li>
+            <li>
+              <button className="btn btn-outline btn-error" >
+                <Link href={"/user/login"}>Logout</Link>
+              </button>
             </li>
           </ul>
         </div>
