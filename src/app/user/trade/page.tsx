@@ -185,50 +185,56 @@ export default function SignupFormDemo() {
         </SelectContent>
       </Select>
 
-      <ApexChart type="candlestick" options={{
-        chart: {
-          type: 'candlestick',
-          height: 350
-        },
-        title: {
-          text: selectedSymbol + ' Chart',
-          align: 'left'
-        },
-        xaxis: {
-          type: 'datetime'
-        },
-        yaxis: {
-          tooltip: {
-            enabled: true
+      <div className="flex flex-row items-center">
+        <ApexChart type="candlestick" options={{
+          chart: {
+            type: 'candlestick',
+            height: 350
+          },
+          title: {
+            text: selectedSymbol + ' Chart',
+            align: 'left'
+          },
+          xaxis: {
+            type: 'datetime'
+          },
+          yaxis: {
+            tooltip: {
+              enabled: true
+            }
           }
-        }
-      }} series={[{ data: data }]} height={400} width={800} />
+        }} series={[{ data: data }]} height={400} width={800} />
 
-      <form className="my-8" onSubmit={handleSubmit}>
-        <LabelInputContainer className="mb-4">
-          <Label htmlFor="email">Order Amount</Label>
-          <Input id="email" placeholder="0" type="number" onChange={(e) => setOrderAmount(e.target.value)} />
-        </LabelInputContainer>
-        <div className="flex flex-col md:flex-row md:justify-around space-y-2 md:space-y-0 md:space-x-2 mb-4">
-          <button className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
-            {createOrderLoading ? 'Loading...' : <p>Buy</p>}
-          </button>
-          <button className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#4d0000,45%,#1e2631,55%,#4d0000)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
-            {createOrderLoading ? 'Loading...' : <p>Sell</p>}
-          </button>
-        </div>
+        <div className="w-8"/>
 
-        <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
+        <form className="my-8" onSubmit={handleSubmit}>
+          <LabelInputContainer className="mb-4">
+            <Label htmlFor="email">Order Amount</Label>
+            <Input id="email" placeholder="0" type="number" onChange={(e) => setOrderAmount(e.target.value)} />
+          </LabelInputContainer>
+          <div className="flex flex-col md:flex-row md:justify-around space-y-2 md:space-y-0 md:space-x-2 mb-4">
+            <button className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+              {createOrderLoading ? 'Loading...' : <p>Buy</p>}
+            </button>
+            <button className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#4d0000,45%,#1e2631,55%,#4d0000)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+              {createOrderLoading ? 'Loading...' : <p>Sell</p>}
+            </button>
+          </div>
 
-        {errorMessage.length !== 0 && <Alert variant="destructive">
-          <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Error</AlertTitle>
-          <AlertDescription>
-            {errorMessage}
-          </AlertDescription>
-        </Alert>}
+          <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
 
-      </form>
+          {errorMessage.length !== 0 && <Alert variant="destructive">
+            <AlertCircle className="h-4 w-4" />
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>
+              {errorMessage}
+            </AlertDescription>
+          </Alert>}
+
+        </form>
+      </div>
+
+
 
       <Tabs defaultValue="open-orders">
         <TabsList>
